@@ -7,7 +7,7 @@ with payments as (
         status,
         amount,
         created
-    from dbt_source.jaffle_shop_payments
+    from {{ source('dbt_source', 'jaffle_shop_payments') }}
 )
 
 select * from payments
