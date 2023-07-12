@@ -1,14 +1,18 @@
 version: 2
 
 sources:
-  - name: dbt_source
+  - name: jaffle_shop
     #database: <db_name> # not applicable for Databricks
     schema: dbt_source
     tables:
       - name: jaffle_shop_customers
       - name: jaffle_shop_orders
+        loaded_at_field: order_timestamp
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 100, period: day}
       - name: jaffle_shop_payments
         loaded_at_field: created_timestamp
         freshness:
           warn_after: {count: 12, period: hour}
-          error_after: {count: 2000, period: day}
+          error_after: {count: 100, period: day}
