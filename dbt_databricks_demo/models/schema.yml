@@ -20,7 +20,7 @@ models:
                 - placed
                 - return_pending
       - name: customer_id
-        description: Reference to stg_customers table
+        description: Reference to snap_customers table
         tests:
           - not_null
           - relationships:
@@ -49,6 +49,7 @@ models:
         description: Reference to stg_orders table
         tests:
           - not_null
+          - unique # provoke intentional test failure 
           - relationships:
               to: ref('stg_orders')
               field: order_id

@@ -7,6 +7,33 @@ sources:
     tables:
       - name: jaffle_shop_customers
       - name: jaffle_shop_orders
+        columns:
+        - name: id
+          description: Primary key
+          tests:
+            - unique
+            - not_null
+        - name: status
+          description: '{{ doc("order_status") }}'
+          tests:
+            - accepted_values:
+                values:
+                  - completed
+                  - shipped
+                  - returned
+                  - placed
+                  - return_pending
+        - name: user_id
+          description: Reference to snap_customers table
+          tests:
+            - not_null
+            - relationships: # doesn't work here
+                to: ref('jaffle_shop_customers')
+                field: id
+        - name: order_date
+          description: Order date
+        - name: order_timestamp
+          description: Order timestamp       
         loaded_at_field: order_timestamp
         freshness:
           warn_after: {count: 12, period: hour}
