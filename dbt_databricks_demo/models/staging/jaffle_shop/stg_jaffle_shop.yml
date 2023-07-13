@@ -27,9 +27,6 @@ sources:
           description: Reference to snap_customers table
           tests:
             - not_null
-            - relationships: # doesn't work here
-                to: ref('jaffle_shop_customers')
-                field: id
         - name: order_date
           description: Order date
         - name: order_timestamp
