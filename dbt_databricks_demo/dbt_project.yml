@@ -41,12 +41,39 @@ models:
     staging:
       +materialized: table
       +schema: staging
+      +meta:
+        owner: "@albena.koteva-pavlidis"
+        subscribers: ["@albena.koteva-pavlidis"]
+        description: "dbt Databricks demo"
+        tags: ["staging"]
+        channel: data-accelerator-dbt-demo
+        alert_suppression_interval: 24 # a snooze period (in hours) for alerts on the same issue 
+        slack_group_alerts_by: table # a single Slack notification will be generated containing all issues associated with a certain table
+        alert_fields: ["description", "owners", "tags", "subscribers"]
     transformation:
       +materialized: view
       +schema: staging
+      +meta:
+        owner: "@albena.koteva-pavlidis"
+        subscribers: ["@albena.koteva-pavlidis"]
+        description: "dbt Databricks demo"
+        tags: ["transformation"]
+        channel: data-accelerator-dbt-demo
+        alert_suppression_interval: 24 # a snooze period (in hours) for alerts on the same issue 
+        slack_group_alerts_by: table # a single Slack notification will be generated containing all issues associated with a certain table
+        alert_fields: ["description", "owners", "tags", "subscribers"]
     marts:
       +materialized: table
       +schema: core
+      +meta:
+        owner: "@albena.koteva-pavlidis"
+        subscribers: ["@albena.koteva-pavlidis"]
+        description: "dbt Databricks demo"
+        tags: ["marts"]
+        channel: data-accelerator-dbt-demo
+        alert_suppression_interval: 24 # a snooze period (in hours) for alerts on the same issue 
+        slack_group_alerts_by: table # a single Slack notification will be generated containing all issues associated with a certain table
+        alert_fields: ["description", "owners", "tags", "subscribers"]
   elementary:
     ## elementary models will be created in the schema '<your_schema>_elementary'
     +schema: "elementary"
