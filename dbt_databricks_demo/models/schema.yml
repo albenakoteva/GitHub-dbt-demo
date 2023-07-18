@@ -71,12 +71,13 @@ models:
         description: Payment date
         tests:
           - not_null
+      - name: created_timestamp
+        description: Payment timestamp
+        tests:
           - unique: # fake test
               meta:
                 tags: ["critical"]
-                description: "Uniqueness violated for column stg_payments.created"
-      - name: created_timestamp
-        description: Payment timestamp
+                description: "Uniqueness violated for column stg_payments.created_timestamp"
 
   - name: dim_customers
     columns:
