@@ -2,7 +2,7 @@
 
 {{
         config(
-          target_schema = 'dbt_target_staging',
+          target_schema = 'dbt_target_bronze',
           strategy = 'check',
           unique_key = 'id',
           check_cols = ['first_name', 'last_name', 'email'],

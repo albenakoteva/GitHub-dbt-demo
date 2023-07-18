@@ -38,41 +38,41 @@ vars:
 models:
   dbt_databricks_demo:
     # Config indicated by + and applies to all files under models/example/
-    staging:
+    bronze:
       +materialized: table
-      +schema: staging
+      +schema: bronze
       +meta:
         owner: "@albena.koteva-pavlidis"
         subscribers: ["@albena.koteva-pavlidis"]
         description: "dbt Databricks demo"
-        tags: ["staging"]
+        tags: ["bronze"]
         channel: data-accelerator-dbt-demo
         alert_suppression_interval: 24 # a snooze period (in hours) for alerts on the same issue 
-        slack_group_alerts_by: table # a single Slack notification will be generated containing all issues associated with a certain table
+        #slack_group_alerts_by: alert # a single Slack notification will be generated containing all issues associated with a certain table
         alert_fields: ["description", "owners", "tags", "subscribers"]
-    transformation:
+    silver:
       +materialized: view
-      +schema: staging
+      +schema: silver
       +meta:
         owner: "@albena.koteva-pavlidis"
         subscribers: ["@albena.koteva-pavlidis"]
         description: "dbt Databricks demo"
-        tags: ["transformation"]
+        tags: ["silver"]
         channel: data-accelerator-dbt-demo
         alert_suppression_interval: 24 # a snooze period (in hours) for alerts on the same issue 
-        slack_group_alerts_by: table # a single Slack notification will be generated containing all issues associated with a certain table
+        #slack_group_alerts_by: table # a single Slack notification will be generated containing all issues associated with a certain table
         alert_fields: ["description", "owners", "tags", "subscribers"]
-    marts:
+    gold:
       +materialized: table
-      +schema: core
+      +schema: gold
       +meta:
         owner: "@albena.koteva-pavlidis"
         subscribers: ["@albena.koteva-pavlidis"]
         description: "dbt Databricks demo"
-        tags: ["marts"]
+        tags: ["gold"]
         channel: data-accelerator-dbt-demo
         alert_suppression_interval: 24 # a snooze period (in hours) for alerts on the same issue 
-        slack_group_alerts_by: table # a single Slack notification will be generated containing all issues associated with a certain table
+        #slack_group_alerts_by: table # a single Slack notification will be generated containing all issues associated with a certain table
         alert_fields: ["description", "owners", "tags", "subscribers"]
   elementary:
     ## elementary models will be created in the schema '<your_schema>_elementary'
