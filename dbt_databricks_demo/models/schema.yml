@@ -23,10 +23,6 @@ models:
         description: Reference to snap_customers table
         tests:
           - not_null
-          - unique: # fake test
-              meta:
-                tags: ["critical"]
-                description: "Uniqueness violated for column stg_orders.customer_id"
           - relationships:
               to: ref('snap_customers')
               field: id
@@ -71,13 +67,14 @@ models:
         description: Payment date
         tests:
           - not_null
-      - name: created_timestamp
-        description: Payment timestamp
-        tests:
           - unique: # fake test
               meta:
                 tags: ["critical"]
-                description: "Uniqueness violated for column stg_payments.created_timestamp"
+                description: "Uniqueness violated for column stg_payments.created"
+      - name: created_timestamp
+        description: Payment timestamp
+        tests:
+          - not_null
 
   - name: dim_customers
     columns:
