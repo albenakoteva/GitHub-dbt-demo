@@ -30,6 +30,12 @@ models:
         description: Order date
       - name: order_timestamp
         description: Order timestamp
+        tests:
+          - not_null
+          #- unique: # fake test
+          #    meta:
+          #      tags: ["critical"]
+          #      description: "Uniqueness violated for column stg_orders.order_timestamp"
 
   - name: stg_payments
     columns:
@@ -67,10 +73,6 @@ models:
         description: Payment date
         tests:
           - not_null
-          - unique: # fake test
-              meta:
-                tags: ["critical"]
-                description: "Uniqueness violated for column stg_payments.created"
       - name: created_timestamp
         description: Payment timestamp
         tests:
